@@ -18,6 +18,7 @@ const useStyles = makeStyles()((theme) => ({
     root: {
         display: 'none',
         padding: theme.spacing(1.5, 3),
+        
         [theme.breakpoints.down('md')]: {
             display: 'block',
         }

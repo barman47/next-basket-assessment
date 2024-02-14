@@ -39,24 +39,15 @@ const useStyles = makeStyles()((theme) => ({
     },
 
     buttonLink: {
-        color: 'inherit',
-        fontSize: theme.spacing(1.75),
-        fontWeight: 700,
-        lineHeight: theme.spacing(3),
+        color: 'inherit'
     },
 
     link: {
-        color: theme.palette.text.primary,
-        fontWeight: 700,
-        fontSize: theme.spacing(3),
-        lineHeight: theme.spacing(4)
+        fontSize: theme.spacing(3)
     },
 
     navLink: {
-        color: theme.palette.text.secondary,
-        fontWeight: 700,
-        fontSize: theme.spacing(1.75),
-        lineHeight: theme.spacing(3)
+        color: theme.palette.text.secondary
     },
 
     shopButton: {

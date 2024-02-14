@@ -1,7 +1,9 @@
+import Home from './(home)';
+
 const HomePage: React.FC<{}> = () => {
 	return (
 		<main>
-			<h1>Hello World</h1>
+			<Home />
 		</main>
 	);
 }

@@ -35,8 +35,6 @@ const useStyles = makeStyles()(theme => ({
     },  
 
     link: {
-        color: theme.palette.text.primary,
-        fontWeight: 700,
         fontSize: theme.spacing(3),
         lineHeight: theme.spacing(4)
     },
@@ -62,10 +60,7 @@ const useStyles = makeStyles()(theme => ({
     },
 
     footerLink: {
-        color: theme.palette.text.secondary,
-        fontWeight: 700,
-        fontSize: theme.spacing(1.75),
-        lineHeight: theme.spacing(3)
+        color: theme.palette.text.secondary
     },
 
     formContainer: {
