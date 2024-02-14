@@ -4,6 +4,7 @@ const PRIMARY_COLOR = '#23A6F0';
 const PRIMARY_TEXT_COLOR = '#252B42';
 const SECONDARY_TEXT_COLOR = '#737373';
 export const WHITE = '#FFFFFF';
+export const LIGHT_GREY = '#FAFAFA';
 
 export const theme = createTheme({	
     components: {
@@ -12,9 +13,13 @@ export const theme = createTheme({
                 root: {
                     fontWeight: 700,
                     textTransform: 'none'
+                },
+
+                contained: {
+                    color: WHITE
                 }
             }
-        }
+        },
     },
 
 	palette: {

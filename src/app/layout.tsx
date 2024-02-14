@@ -1,5 +1,7 @@
 import ThemeRegistry from '@/ThemeRegistry';
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { Toolbar } from '@mui/material';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 
@@ -15,8 +17,11 @@ export default function RootLayout({ children }: Readonly<{children: React.React
 		<html lang="en">
 			<body className={montserrat.className}>
 				<ThemeRegistry options={{ key: 'mui' }}>
-				<Header />
-				{children}
+				{/* <Header /> */}
+				<Toolbar>
+					{children}
+				</Toolbar>
+				<Footer />
 				</ThemeRegistry>
 			</body>
 		</html>
