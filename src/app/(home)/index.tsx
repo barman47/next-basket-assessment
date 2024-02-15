@@ -1,3 +1,4 @@
+import Products from '../(products)/Products';
 import Advert from './Advert';
 import FeaturedPosts from './FeaturedPosts';
 import Hero from './Hero';
@@ -8,6 +9,7 @@ const Home: React.FC<{}> = () =>{
     return (
         <>
             <Hero />
+            <Products />
             <Services />
             <FeaturedPosts />
             <Review />

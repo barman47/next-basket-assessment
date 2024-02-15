@@ -18,7 +18,6 @@ import { ChartLine, ChevronRight, ClockOutline } from 'mdi-material-ui';
 const useStyles = makeStyles()(theme => ({
     root: {
         marginTop: theme.spacing(20),
-        gap: theme.spacing(15),
         padding: theme.spacing(10, 17),
 
         [theme.breakpoints.down('lg')]: {
