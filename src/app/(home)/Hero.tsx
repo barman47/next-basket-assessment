@@ -161,10 +161,3 @@ const Hero: React.FC<{}> = () => {
 };
 
 export default Hero;
-
-{/* <Box className={classes.root}>
-            <Box component="div" className={classes.heroItem}></Box>
-            <Box component="div" className={classes.heroItem}></Box>
-            <Box component="div" className={classes.heroItem}></Box>
-            <Box component="div" className={classes.heroItem}></Box>
-        </Box> */}

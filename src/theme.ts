@@ -5,6 +5,7 @@ const PRIMARY_TEXT_COLOR = '#252B42';
 const SECONDARY_COLOR = '#23856D';
 const SECONDARY_TEXT_COLOR = '#737373';
 const SUCCESS_COLOR = '#2DC071';
+const RATING_COLOR = '#F3CD03';
 export const WHITE = '#FFFFFF';
 export const LIGHT_GREY = '#FAFAFA';
 
@@ -15,7 +16,11 @@ export const theme = createTheme({
                 root: {
                     fontWeight: 700,
                     textTransform: 'none',
-                    boxShadow: 'none'
+                    boxShadow: 'none',
+
+                    '&:hover': {
+                        boxShadow: 'none'
+                    }
                 },
 
                 contained: {
@@ -31,7 +36,22 @@ export const theme = createTheme({
                     fontWeight: 700,
                     fontSize: '14px',
                     lineHeight: '24px',
-                    textDecoration: 'none'
+                    textDecoration: 'none',
+
+                    '&:hover': {
+                        color: PRIMARY_COLOR
+                    }
+                }
+            }
+        },
+
+        MuiRating: {
+            styleOverrides: {
+                root: {
+                    color: RATING_COLOR
+                },
+                iconEmpty: {
+                    color: RATING_COLOR
                 }
             }
         }
