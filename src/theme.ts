@@ -8,6 +8,7 @@ const SUCCESS_COLOR = '#2DC071';
 const RATING_COLOR = '#F3CD03';
 export const WHITE = '#FFFFFF';
 export const LIGHT_GREY = '#FAFAFA';
+export const DISABLED_ELEMENT_COLOR = '#8EC2F2';
 
 export const theme = createTheme({	
     components: {
