@@ -17,7 +17,7 @@ const useStyles = makeStyles()(theme => ({
             padding: theme.spacing(0, 5),
         },
 
-        [theme.breakpoints.down('md')]: {
+        [theme.breakpoints.down('sm')]: {
             padding: theme.spacing(0, 3),
         }
     },
@@ -44,10 +44,6 @@ const useStyles = makeStyles()(theme => ({
         fontSize: theme.spacing(1.75),
         lineHeight: theme.spacing(2.6),
         textAlign: 'center'
-    },
-
-    service: {
-
     }
 }));
 
@@ -69,7 +65,6 @@ const Services: React.FC<{}> = () => {
                             width={100}
                             height={100}
                             alt="Easy Wins"
-                            className={classes.service}
                         />
                         <Typography variant="h6" className={classes.subTitle}>Easy Wins</Typography>
                         <Typography variant="subtitle2" className={classes.text}>Get your best looking smile now!</Typography>
@@ -82,7 +77,6 @@ const Services: React.FC<{}> = () => {
                             width={100}
                             height={100}
                             alt="Concrete"
-                            className={classes.service}
                         />
                         <Typography variant="h6" className={classes.subTitle}>Concrete</Typography>
                         <Typography variant="subtitle2" className={classes.text}>Defalcate is most focused in helping you discover your most beautiful smile</Typography>
@@ -95,7 +89,6 @@ const Services: React.FC<{}> = () => {
                             width={100}
                             height={100}
                             alt="Easy Wins"
-                            className={classes.service}
                         />
                         <Typography variant="h6" className={classes.subTitle}>Hack Growth</Typography>
                         <Typography variant="subtitle2" className={classes.text}>Overcame any hurdle or any other problem.</Typography>

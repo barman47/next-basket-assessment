@@ -14,7 +14,8 @@ export const theme = createTheme({
             styleOverrides: {
                 root: {
                     fontWeight: 700,
-                    textTransform: 'none'
+                    textTransform: 'none',
+                    boxShadow: 'none'
                 },
 
                 contained: {
