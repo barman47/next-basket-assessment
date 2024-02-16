@@ -18,11 +18,12 @@ interface Props {
     icon: React.ReactElement;
     count: number;
     size?: "small" | "medium" | "large"
+    handleClick?:() => void
 };
 
-const CustomizedBadge: React.FC<Props> = ({ icon, count, size }) => {
+const CustomizedBadge: React.FC<Props> = ({ icon, count, size, handleClick }) => {
     return (
-        <IconButton size={size ?? "small"} color="primary">
+        <IconButton size={size ?? "small"} color="primary" onClick={handleClick ? handleClick : () => {}}>
             <StyledBadge badgeContent={count} color="secondary">
                 {icon}
             </StyledBadge>

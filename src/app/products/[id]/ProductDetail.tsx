@@ -3,6 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     Box,
     Breadcrumbs,
@@ -18,9 +19,12 @@ import {
 } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import { CartOutline, ChevronLeft, ChevronRight, Eye, HeartOutline } from 'mdi-material-ui';
-import { Product } from '@/interfaces';
+import { CartItem, Product, WishlistItem } from '@/interfaces';
 import { BLACK, LIGHT_GREY, WHITE } from '@/theme';
 import numbro from 'numbro';
+import { AppDispatch } from '@/redux/store';
+import { addItemToCart, selectCartItems } from '@/redux/features/cartSlice';
+import { addItemToWishList, selectWishlistItems } from '@/redux/features/wishlistSlice';
 
 const useStyles = makeStyles()(theme => ({
     root: {
@@ -125,10 +129,27 @@ interface Props {
 
 const ProductDetail: React.FC<Props> = ({ product }) => {
     const { classes, cx } = useStyles();
-    const { images, price, rating, stock, thumbnail, title } = product;
+    const dispatch: AppDispatch = useDispatch();
+
+    const cartItems = useSelector(selectCartItems);
+    const wishListItems = useSelector(selectWishlistItems);
+    const { id, images, price, rating, stock, thumbnail, title } = product;
+
+    const isItemInCart = (id: number): boolean => {
+        const itemIndex = cartItems.findIndex(item => item.id === id);
+        return itemIndex === -1 ? false : true;
+    };
+
+    const isItemInWishlist = (id: number): boolean => {
+        const itemIndex = wishListItems.findIndex(item => item.id === id);
+        return itemIndex === -1 ? false : true;
+    };
 
     const [currentImage, setCurrentImage] = React.useState(thumbnail);
     const [currentImageIndex, setCurrentImageIndex] = React.useState(images.findIndex(image => image === thumbnail));
+    
+    const itemExistsInCart = isItemInCart(id);
+    const itemExistsInWishlist = isItemInWishlist(id);
 
     const showNextImage = (): void => {
         if (currentImageIndex === images.length - 1) {
@@ -154,9 +175,17 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
         }
     };
 
-    const handleShowImage = (image: string) => {
+    const handleShowImage = (image: string): void => {
         setCurrentImage(image);
         setCurrentImageIndex(images.findIndex(item => item === image))
+    };
+
+    const handleAddItemToCart = (cartItem: CartItem): void => {
+        dispatch(addItemToCart(cartItem));
+    };
+
+    const handleAddItemToWishlist = (wishlistItem: WishlistItem): void => {
+        dispatch(addItemToWishList(wishlistItem));
     };
 
     return (
@@ -236,12 +265,33 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
                             >
                                 Select Options
                             </Button>
-                            <IconButton className={classes.iconButton}>
+                            <IconButton 
+                                className={classes.iconButton} 
+                                onClick={() => handleAddItemToWishlist({
+                                    id,
+                                    thumbnail,
+                                    title
+                                })}
+                                disabled={itemExistsInWishlist}
+                            >
                                 <Tooltip title="Add to Wishlist" arrow placement="bottom">
                                     <HeartOutline className={classes.icon} />
                                 </Tooltip>
                             </IconButton>
-                            <IconButton className={classes.iconButton}>
+                            <IconButton 
+                                className={classes.iconButton}
+                                onClick={() => {
+                                    handleAddItemToCart({
+                                        id,
+                                        price,
+                                        title,
+                                        thumbnail,
+                                        quantity: 1,
+                                        total: price
+                                    });
+                                }}
+                                disabled={itemExistsInCart}
+                            >
                                 <Tooltip title="Add to Cart" arrow placement="bottom">
                                     <CartOutline className={classes.icon} />
                                 </Tooltip>

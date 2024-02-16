@@ -31,5 +31,6 @@ export const {
 } = wishlist.actions;
 
 export const selectWishlistItems = (state: RootState) => state.wishlist.products;
+export const selectWishlistItemCount = (state: RootState) => state.wishlist.products.length;
 
 export default wishlist.reducer;

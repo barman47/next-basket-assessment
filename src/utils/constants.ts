@@ -11,6 +11,11 @@ export interface ApiResponse {
     total: number;
 }
 
+export interface ModalRef {
+    openModal: () => void;
+    closeModal: () => void;
+}
+
 export type Pagination = Omit<ApiResponse, 'products'>;
 
 export type ApiErrorResponse = Omit<ApiResponse, 'token'>;

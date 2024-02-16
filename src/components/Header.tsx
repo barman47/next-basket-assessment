@@ -11,12 +11,18 @@ import {
     Button,
     IconButton
 } from '@mui/material';
-
 import { makeStyles } from 'tss-react/mui';
 import { AccountOutline, CartOutline, ChevronDown, EmailOutline, Facebook, HeartOutline, Instagram, Magnify, PhoneOutline, Twitter, Youtube } from 'mdi-material-ui';
+
 import { WHITE } from '@/theme';
 import CustomizedBadge from './CustomizedBadge';
 import MobileDrawer from './Drawer';
+import CartModal from '@/app/modals/Cart';
+import { ModalRef } from '@/utils/constants';
+import { useSelector } from 'react-redux';
+import { selectCartItemCount } from '@/redux/features/cartSlice';
+import { selectWishlistItemCount } from '@/redux/features/wishlistSlice';
+import WishlistModal from '@/app/modals/Wishlist';
 
 const useStyles = makeStyles()((theme) => ({
     root: {
@@ -65,14 +71,30 @@ const useStyles = makeStyles()((theme) => ({
 const Header: React.FC<{}> = () => {
     const { classes } = useStyles();
 
+    const cartItemCount = useSelector(selectCartItemCount);
+    const wishlistCount = useSelector(selectWishlistItemCount);
+
     const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+    const cartModalRef = React.useRef<ModalRef>();
+    const wishlistModalRef = React.useRef<ModalRef>();
 
     const toggleDrawer = () => {
         setDrawerOpen((prevState) => !prevState);
     };
 
+    const openCartModal = () => {
+        cartModalRef.current?.openModal();
+    };
+
+    const openWishlistModal = () => {
+        wishlistModalRef.current?.openModal();
+    };
+
     return (
         <>
+            <CartModal ref={cartModalRef} />
+            <WishlistModal ref={wishlistModalRef} />
             <AppBar component="nav" elevation={0} className={classes.root}>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" component="section" className={classes.navHeader}>
                     <Stack direction="row" alignItems="center">
@@ -159,11 +181,13 @@ const Header: React.FC<{}> = () => {
                             </IconButton>
                             <CustomizedBadge 
                                 icon={<CartOutline />}
-                                count={1}
+                                count={cartItemCount}
+                                handleClick={openCartModal}
                             />
                             <CustomizedBadge 
                                 icon={<HeartOutline />}
-                                count={1}
+                                count={wishlistCount}
+                                handleClick={openWishlistModal}
                             />
                         </Stack>
                     </Stack>
