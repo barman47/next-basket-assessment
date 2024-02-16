@@ -77,7 +77,7 @@ const ProductDetailsPage: React.FC<Props> = async ({ params }) => {
 	return (
 		<main>
             <ProductDetail product={product} />
-            <ProductDescription />
+            <ProductDescription description={product.description} image={product.thumbnail} />
 			<Products />
             <Partners />
 		</main>

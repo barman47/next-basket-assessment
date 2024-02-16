@@ -1,9 +1,5 @@
 import { Product } from '@/interfaces';
 
-export interface Error {
-    msg?: string;
-}
-
 export interface ApiResponse {
     limit: number;
     products: Product[];
@@ -18,4 +14,8 @@ export interface ModalRef {
 
 export type Pagination = Omit<ApiResponse, 'products'>;
 
-export type ApiErrorResponse = Omit<ApiResponse, 'token'>;
+export interface ApiErrorResponse {
+    msg: string;
+    success: boolean;
+    statusCode: number;
+}

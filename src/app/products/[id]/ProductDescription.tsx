@@ -4,7 +4,6 @@ import * as React from 'react';
 import Image from 'next/image';
 import {
     Box,
-    Stack,
     Tab,
     Tabs,
     Typography,
@@ -59,11 +58,6 @@ const useStyles = makeStyles()(theme => ({
         lineHeight: theme.spacing(2.5)
     },
 
-    greenBorder: {
-        borderLeft: `3px solid ${theme.palette.secondary.main}`,
-        paddingLeft: theme.spacing(2)
-    },
-
     image: {
         [theme.breakpoints.down('sm')]: {
             border: '2px solid green',
@@ -107,8 +101,13 @@ function a11yProps(index: number) {
     };
 }
 
-const ProductDescription: React.FC<{}> = () => {
-    const { classes, cx } = useStyles();
+interface Props {
+    description: string;
+    image: string;
+}
+
+const ProductDescription: React.FC<Props> = ({ description, image }) => {
+    const { classes } = useStyles();
 
     const [value, setValue] = React.useState(0);
 
@@ -127,14 +126,9 @@ const ProductDescription: React.FC<{}> = () => {
             </Box>
             <CustomTabPanel value={value} index={0}>
                 <Box component="div" className={classes.textContainer}>
-                    <Stack direction="column" spacing={3}>
-                        <Typography variant="h6" className={classes.title}>the quick fox jumps over </Typography>
-                        <Typography variant="body2" component="p" className={classes.text}>Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.</Typography>
-                        <Typography variant="body2" component="p" className={cx(classes.text, classes.greenBorder)}>Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.</Typography>
-                        <Typography variant="body2" component="p" className={classes.text}>Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.</Typography>
-                    </Stack>
+                    <Typography variant="body2" component="p" className={classes.text}>{description}</Typography>
                     <Image 
-                        src="/img/product-description.png"
+                        src={image}
                         width={418}
                         height={382}
                         alt="Product Description"

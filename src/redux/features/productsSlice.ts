@@ -2,11 +2,9 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { handleError } from '@/utils/handleError';
-import { ApiErrorResponse, ApiResponse, Error, Pagination } from '@/utils/constants';
+import { ApiErrorResponse, ApiResponse, Pagination } from '@/utils/constants';
 import { Product } from '@/interfaces';
 import { RootState } from '../store';
-
-export type ProductError = Error & Product;
 
 const API = `${process.env.NEXT_PUBLIC_API}/products`;
 
@@ -15,7 +13,7 @@ interface ProductsState {
     pagination: Pagination;
     products: Product[];
     msg: string | null;
-    error: ProductError;
+    error: string | null;
 };
 
 const initialState: ProductsState = {
@@ -27,7 +25,7 @@ const initialState: ProductsState = {
     },
     products: [],
     msg: null,
-    error: {} as ProductError
+    error: null
 };
 
 export const getProducts = createAsyncThunk<ApiResponse, number, { rejectValue: ApiErrorResponse }>('products/getProducts', async (skip, { rejectWithValue }) => {
@@ -49,7 +47,7 @@ export const products = createSlice({
         },
 
         clearError: (state) => {
-            state.error = {} as ProductError;
+            state.error = null;
         },
     },
     extraReducers(builder) {
@@ -64,7 +62,7 @@ export const products = createSlice({
         })
         .addCase(getProducts.rejected, (state, action) => {
             state.isLoading = false;
-            // state.error = action.payload?.data;
+            state.error = action.payload?.msg || 'Failed to get products';
         })
     }
 });
@@ -74,7 +72,7 @@ export const {
     setProducts,
 } = products.actions;
 
-export const selectProductErrors = (state: RootState) => state.products.error;
+export const selectProductError = (state: RootState) => state.products.error;
 export const selectIsProductsLoading = (state: RootState) => state.products.isLoading;
 export const selectPagination = (state: RootState) => state.products.pagination;
 export const selectProducts = (state: RootState) => state.products.products;

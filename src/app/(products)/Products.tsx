@@ -11,8 +11,9 @@ import { makeStyles } from 'tss-react/mui';
 
 import Product from './Product';
 import { AppDispatch } from '@/redux/store';
-import { getProducts, selectIsProductsLoading, selectPagination, selectProducts } from '@/redux/features/productsSlice';
+import { clearError, getProducts, selectIsProductsLoading, selectPagination, selectProductError, selectProducts } from '@/redux/features/productsSlice';
 import { Product as ProductData } from '@/interfaces';
+import { setToast } from '@/redux/features/toastSlice';
 
 
 const useStyles = makeStyles()(theme => ({
@@ -104,11 +105,22 @@ const Products: React.FC<Props> = ({ paginate }) => {
     const pagination = useSelector(selectPagination);
     const products = useSelector(selectProducts);
     const loading = useSelector(selectIsProductsLoading);
+    const errors = useSelector(selectProductError);
 
     React.useEffect(() => {
         dispatch(getProducts(0));
 
     }, [dispatch]);
+
+    React.useEffect(() => {
+        if (errors) {
+            dispatch(setToast({
+                type: 'error',
+                message: errors
+            }));
+            dispatch(clearError());
+        }
+    }, [dispatch, errors]);
 
     const getMoreProducts = () => {
         dispatch(getProducts(products.length));
