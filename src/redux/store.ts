@@ -1,19 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-import storage from 'redux-persist/lib/storage/session';
+import storage from 'redux-persist/lib/storage';
 
+import cart from './features/cartSlice';
 import products from './features/productsSlice';
+import wishlist from './features/wishlistSlice';
 
 const rootReducer = combineReducers({
-    products
+    cart,
+    products,
+    wishlist
 });
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['auth']
+    whitelist: ['cart', 'wishlist']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
