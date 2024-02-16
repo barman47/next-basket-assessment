@@ -8,12 +8,11 @@ import { RootState } from '../store';
 
 export type ProductError = Error & Product;
 
-const API = 'https://dummyjson.com/products';
+const API = `${process.env.NEXT_PUBLIC_API}/products`;
 
 interface ProductsState {
     isLoading: boolean;
     pagination: Pagination;
-    product: Product;
     products: Product[];
     msg: string | null;
     error: ProductError;
@@ -26,7 +25,6 @@ const initialState: ProductsState = {
         limit: 0,
         total: 0
     },
-    product: {} as Product,
     products: [],
     msg: null,
     error: {} as ProductError
@@ -46,10 +44,6 @@ export const products = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        setProduct: (state, action: PayloadAction<Product>) => {
-            state.product = action.payload;
-        },
-
         setProducts: (state, action: PayloadAction<Product[]>) => {
             state.products = action.payload;
         },
@@ -77,14 +71,12 @@ export const products = createSlice({
 
 export const {
     clearError,
-    setProduct,
     setProducts,
 } = products.actions;
 
 export const selectProductErrors = (state: RootState) => state.products.error;
 export const selectIsProductsLoading = (state: RootState) => state.products.isLoading;
 export const selectPagination = (state: RootState) => state.products.pagination;
-export const selectProduct = (state: RootState) => state.products.product;
 export const selectProducts = (state: RootState) => state.products.products;
 
 export default products.reducer;

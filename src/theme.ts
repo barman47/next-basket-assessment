@@ -7,6 +7,7 @@ const SECONDARY_TEXT_COLOR = '#737373';
 const SUCCESS_COLOR = '#2DC071';
 const RATING_COLOR = '#F3CD03';
 const MUTED_COLOR = '#BDBDBD';
+export const BLACK = '#000000';
 export const WHITE = '#FFFFFF';
 export const LIGHT_GREY = '#FAFAFA';
 export const DISABLED_ELEMENT_COLOR = '#8EC2F2';

@@ -13,7 +13,6 @@ import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()(theme => ({
     root: {
-        marginTop: theme.spacing(20),
         padding: theme.spacing(10, 17),
 
         [theme.breakpoints.down('lg')]: {
@@ -25,6 +24,7 @@ const useStyles = makeStyles()(theme => ({
         },
 
         [theme.breakpoints.down('sm')]: {
+            display: 'none',
             padding: theme.spacing(6.9, 3)
         }
     },
