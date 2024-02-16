@@ -61,7 +61,7 @@ const Product: React.FC<Props> = ({ product }) => {
     const { title, category, thumbnail, price, discountPercentage } = product;
 
     return (
-        <Link href="#!" style={{ textDecoration: 'none' }}>
+        <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
             <Card elevation={0} className={classes.card}>
                 <CardMedia
                     sx={{ height: 300 }}

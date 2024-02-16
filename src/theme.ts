@@ -56,7 +56,24 @@ export const theme = createTheme({
                     color: RATING_COLOR
                 }
             }
-        }
+        },
+
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    color: SECONDARY_TEXT_COLOR,
+                    textTransform: 'none'
+                }
+            }
+        },
+
+        MuiTabs: {
+            styleOverrides: {
+                flexContainer: {
+                    justifyContent: 'center'
+                }
+            }
+        },
     },
 
 	palette: {
