@@ -1,12 +1,19 @@
 'use client';
 
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     Box,
     Typography,
     Button
 } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
+
 import Product from './Product';
+import { AppDispatch } from '@/redux/store';
+import { getProducts, selectIsProductsLoading, selectPagination, selectProducts } from '@/redux/features/productsSlice';
+import { Product as ProductData } from '@/interfaces';
+
 
 const useStyles = makeStyles()(theme => ({
     root: {
@@ -80,11 +87,33 @@ const useStyles = makeStyles()(theme => ({
     button: {
         alignSelf: 'center',
         marginTop: theme.spacing(5)
+    },
+
+    hide: {
+        display: 'none'
     }
 }));
 
-const Products: React.FC<{}> = () => {
+interface Props {
+    paginate?: boolean;
+}
+
+const Products: React.FC<Props> = ({ paginate }) => {
     const { classes } = useStyles();
+    const dispatch: AppDispatch = useDispatch();
+
+    const pagination = useSelector(selectPagination);
+    const products = useSelector(selectProducts);
+    const loading = useSelector(selectIsProductsLoading);
+
+    React.useEffect(() => {
+        dispatch(getProducts(0));
+
+    }, [dispatch]);
+
+    const getMoreProducts = () => {
+        dispatch(getProducts(products.length));
+    };
 
     return (
         <Box component="section" className={classes.root}>
@@ -92,25 +121,23 @@ const Products: React.FC<{}> = () => {
             <Typography variant="h5" className={classes.title}>BESTSELLER PRODUCTS</Typography>
             <Typography variant="body2" component="p" className={classes.text}>Problems trying to resolve the conflict between </Typography>
             <Box component="section" className={classes.cardGrid}>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                {products.map((product: ProductData) => (
+                    <Product key={product.id} product={product} />
+                ))}
             </Box>
-            <Button
-                variant="outlined"
-                color="primary"
-                size="large"
-                classes={{ root: classes.button }}
-            >
-                LOAD MORE PRODUCTS
-            </Button>
+            {paginate && 
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    size="large"
+                    classes={{ root: classes.button }}
+                    onClick={getMoreProducts}
+                    disabled={loading}
+                    sx={{ display: products.length === pagination.total ? 'none' : 'initial' }}
+                >
+                    {loading ? 'LOADING PRODUCTS . . .' : 'LOAD MORE PRODUCTS'}
+                </Button>
+            }
         </Box>
     );
 };

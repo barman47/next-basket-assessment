@@ -9,7 +9,7 @@ const Home: React.FC<{}> = () =>{
     return (
         <>
             <Hero />
-            <Products />
+            <Products paginate={true} />
             <Services />
             <FeaturedPosts />
             <Review />

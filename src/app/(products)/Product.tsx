@@ -9,6 +9,10 @@ import {
     Typography
 } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
+import numbro from 'numbro';
+
+import { Product as ProductData } from '@/interfaces';
+import { getDiscountedPrice } from '@/utils/getDiscountedPrice';
 
 const useStyles = makeStyles()(theme => ({
     card: {
@@ -48,24 +52,29 @@ const useStyles = makeStyles()(theme => ({
     }
 }));
 
-const Product: React.FC<{}> = () => {
+interface Props {
+    product: ProductData;
+}
+
+const Product: React.FC<Props> = ({ product }) => {
     const { classes } = useStyles();
+    const { title, category, thumbnail, price, discountPercentage } = product;
 
     return (
         <Link href="#!" style={{ textDecoration: 'none' }}>
             <Card elevation={0} className={classes.card}>
                 <CardMedia
                     sx={{ height: 300 }}
-                    image="/img/post1.png"
-                    title="Post 1"
+                    image={thumbnail}
+                    title={title}
                 />
                 <CardContent>
                     <Stack direction="column" spacing={2}>
-                        <Typography variant="body1" component="p" className={classes.cardTitle}>Graphic Design</Typography>
-                        <Typography variant="body1" component="p" className={classes.cardText}>English Department</Typography>
+                        <Typography variant="body1" component="p" className={classes.cardTitle}>{title}</Typography>
+                        <Typography variant="body1" component="p" className={classes.cardText}>{category}</Typography>
                         <Stack direction="row" justifyContent="center" spacing={2} sx={{ width: '100%' }}>
-                            <Typography variant="body1" component="p" className={classes.price} color="text.disabled">&#36;16.48</Typography>
-                            <Typography variant="body1" component="p" className={classes.price} color="secondary">&#36;6.48</Typography>
+                            <Typography variant="body1" component="p" className={classes.price} color="text.disabled">&#36;{numbro(price).format({ thousandSeparated: true, mantissa: 0 })}</Typography>
+                            <Typography variant="body1" component="p" className={classes.price} color="secondary">&#36;{numbro(getDiscountedPrice(price, discountPercentage)).format({ thousandSeparated: true, mantissa: 2 })}</Typography>
                         </Stack>
                     </Stack>
                 </CardContent>
