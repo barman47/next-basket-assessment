@@ -193,7 +193,12 @@ const Header: React.FC<{}> = () => {
                     </Stack>
                 </Toolbar>
             </AppBar>
-            <MobileDrawer open={drawerOpen} toggleDrawer={toggleDrawer} />
+            <MobileDrawer 
+                open={drawerOpen} 
+                toggleDrawer={toggleDrawer} 
+                openCartModal={openCartModal}
+                openWishlistModal={openWishlistModal}
+            />
         </>
     );
 }

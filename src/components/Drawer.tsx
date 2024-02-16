@@ -1,7 +1,9 @@
 import * as React from 'react';
 import NextLink from 'next/link';
 
+import { useSelector } from 'react-redux';
 import { Box, 
+    Button, 
     Drawer, 
     IconButton, 
     Link,
@@ -9,10 +11,15 @@ import { Box,
     ListItem, 
     ListItemButton, 
     ListItemText,
-    Stack
+    Stack,
+    Typography
 } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
-import { AlignHorizontalRight, CartOutline, Magnify } from 'mdi-material-ui';
+import { AccountOutline, AlignHorizontalRight, CartOutline, HeartOutline, Magnify } from 'mdi-material-ui';
+
+import CustomizedBadge from './CustomizedBadge';
+import { selectCartItemCount } from '@/redux/features/cartSlice';
+import { selectWishlistItemCount } from '@/redux/features/wishlistSlice';
 
 const useStyles = makeStyles()((theme) => ({
     root: {
@@ -42,26 +49,33 @@ const useStyles = makeStyles()((theme) => ({
 interface Props {
     open: boolean;
     toggleDrawer(): void;
+    openCartModal(): void;
+    openWishlistModal(): void;
 }
 
-const MobileDrawer: React.FC<Props> = ({ open, toggleDrawer }) => {
+const MobileDrawer: React.FC<Props> = ({ open, toggleDrawer, openCartModal, openWishlistModal }) => {
     const { classes } = useStyles();
+
+    const cartItemCount = useSelector(selectCartItemCount);
+    const wishlistCount = useSelector(selectWishlistItemCount);
+
+    const handleOpenCartModal = (): void => {
+        openCartModal();
+        toggleDrawer();
+    };
+
+    const handleOpenWishlistModal = (): void => {
+        openWishlistModal();
+        toggleDrawer();
+    };
 
     return (
         <Box component="nav" className={classes.root}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
                 <Link component={NextLink} href="/" underline="none" className={classes.link}>Bandage</Link>
-                <Stack direction="row" spacing={3}>
-                    <IconButton size="small">
-                        <Magnify />
-                    </IconButton>
-                    <IconButton size="small">
-                        <CartOutline />
-                    </IconButton>
-                    <IconButton size="small" onClick={toggleDrawer}>
-                        <AlignHorizontalRight />
-                    </IconButton>
-                </Stack>
+                <IconButton size="small" onClick={toggleDrawer}>
+                    <AlignHorizontalRight />
+                </IconButton>
             </Stack>
             <Drawer
                 variant="temporary"
@@ -93,6 +107,39 @@ const MobileDrawer: React.FC<Props> = ({ open, toggleDrawer }) => {
                             <ListItemText primary="Contact" />
                         </ListItemButton>
                     </ListItem>
+                    <Stack direction="row" justifyContent="center">
+                        <Button
+                            variant="text"
+                            color="primary"
+                            size="small"
+                            startIcon={<AccountOutline />}
+                        >
+                            Login
+                        </Button>
+                        <Typography variant="subtitle1" component="span" color="primary">/</Typography>
+                        <Button
+                            variant="text"
+                            color="primary"
+                            size="small"
+                        >
+                            Register
+                        </Button>
+                    </Stack>
+                    <Stack direction="column" justifyContent="center">
+                        <IconButton size="small" color="primary">
+                            <Magnify />
+                        </IconButton>
+                        <CustomizedBadge 
+                            icon={<CartOutline />}
+                            count={cartItemCount}
+                            handleClick={handleOpenCartModal}
+                        />
+                        <CustomizedBadge 
+                            icon={<HeartOutline />}
+                            count={wishlistCount}
+                            handleClick={handleOpenWishlistModal}
+                        />
+                    </Stack>
                 </List>
             </Drawer>
         </Box>
