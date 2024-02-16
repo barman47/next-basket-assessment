@@ -25,6 +25,7 @@ import numbro from 'numbro';
 import { AppDispatch } from '@/redux/store';
 import { addItemToCart, selectCartItems } from '@/redux/features/cartSlice';
 import { addItemToWishList, selectWishlistItems } from '@/redux/features/wishlistSlice';
+import { setToast } from '@/redux/features/toastSlice';
 
 const useStyles = makeStyles()(theme => ({
     root: {
@@ -182,10 +183,18 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
 
     const handleAddItemToCart = (cartItem: CartItem): void => {
         dispatch(addItemToCart(cartItem));
+        dispatch(setToast({
+            type: 'success',
+            message: 'Item added to cart'
+        }));
     };
 
     const handleAddItemToWishlist = (wishlistItem: WishlistItem): void => {
         dispatch(addItemToWishList(wishlistItem));
+        dispatch(setToast({
+            type: 'success',
+            message: 'Item added to wishlist'
+        }));
     };
 
     return (

@@ -5,11 +5,13 @@ import storage from 'redux-persist/lib/storage';
 
 import cart from './features/cartSlice';
 import products from './features/productsSlice';
+import toast from './features/toastSlice';
 import wishlist from './features/wishlistSlice';
 
 const rootReducer = combineReducers({
     cart,
     products,
+    toast,
     wishlist
 });
 
