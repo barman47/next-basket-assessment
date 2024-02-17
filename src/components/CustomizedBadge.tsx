@@ -23,7 +23,7 @@ interface Props {
 
 const CustomizedBadge: React.FC<Props> = ({ icon, count, size, handleClick }) => {
     return (
-        <IconButton size={size ?? "small"} color="primary" onClick={handleClick ? handleClick : () => {}}>
+        <IconButton size={size ?? "small"} color="primary" onClick={handleClick ? handleClick : () => {}} aria-label="badge-button">
             <StyledBadge badgeContent={count} color="secondary">
                 {icon}
             </StyledBadge>

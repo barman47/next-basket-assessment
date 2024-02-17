@@ -56,8 +56,15 @@ const useStyles = makeStyles()(theme => ({
 
     image: {
         objectFit: 'cover',
-        width: '100%',
-        height: '100%'
+        width: '142px',
+        height: '142px',
+        minWidth: '100%',
+        minHeight: '100%',
+
+        [theme.breakpoints.down('sm')]: {
+            width: '100px',
+            height: '100px',   
+        }
     }
 }));
 
@@ -70,7 +77,7 @@ const Review: React.FC<{}> = () => {
         <Box component="section" className={classes.root}>
             <Stack direction="column" alignItems="center" spacing={4} sx={{ textAlign: 'center' }}>
                 <Typography variant="h5" className={classes.title}>What they say about us</Typography>
-                <Avatar src="/img/user-review.jpg" sx={{ width: 90, height: 90 }} />
+                <Avatar src="/img/user-review.jpg" sx={{ width: 90, height: 90 }} alt="avatar" />
                 <Rating readOnly value={4} />
                 <Typography variant="h6" className={classes.subTitle}>Slate helps you see how many more days you need to work to reach your financial goal.</Typography>
                 <Box component="div">

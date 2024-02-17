@@ -165,6 +165,7 @@ const FeaturedPosts: React.FC<{}> = () => {
                             variant="text"
                             endIcon={<ChevronRight />}
                             classes={{ root: classes.button, endIcon: classes.buttonIcon }}
+                            aria-label="learn-more-button"
                         >
                             Learn More
                         </Button>
@@ -204,6 +205,7 @@ const FeaturedPosts: React.FC<{}> = () => {
                             variant="text"
                             endIcon={<ChevronRight />}
                             classes={{ root: classes.button, endIcon: classes.buttonIcon }}
+                            aria-label="learn-more-button"
                         >
                             Learn More
                         </Button>
@@ -243,6 +245,7 @@ const FeaturedPosts: React.FC<{}> = () => {
                             variant="text"
                             endIcon={<ChevronRight />}
                             classes={{ root: classes.button, endIcon: classes.buttonIcon }}
+                            aria-label="learn-more-button"
                         >
                             Learn More
                         </Button>

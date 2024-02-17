@@ -219,7 +219,7 @@ const CartModal: React.FC<Props> = React.forwardRef<ModalRef, Props>((_props: Pr
             disableEscapeKeyDown
         >
             <Box component="section" className={classes.root}>
-                <IconButton onClick={handleClose} sx={{ alignSelf: 'flex-end' }}>
+                <IconButton onClick={handleClose} sx={{ alignSelf: 'flex-end' }} aria-label="close-button">
                     <Close />
                 </IconButton>
                 {cartItemCount > 0 && <Typography variant="h5" className={classes.title}>Your Cart ({cartItemCount} {`Item${cartItemCount === 1 ? '' : 's'}`})</Typography>}
@@ -253,32 +253,36 @@ const CartModal: React.FC<Props> = React.forwardRef<ModalRef, Props>((_props: Pr
                                             onClick={() => handleDecreaseCartItemCount(cartItem.id)}
                                             disabled={cartItem.quantity === 1}
                                             classes={{ root: classes.button }}
+                                            aria-label="decrease-quantity-button"
                                         >
                                             -
                                         </Button>
                                         <Button 
                                             disabled
                                             classes={{ root: classes.button }}
+                                            aria-label="quantity-value"
                                         >
                                             {cartItem.quantity}
                                         </Button>
                                         <Button 
                                             onClick={() => handleIncreaseCartItemCount(cartItem.id)}
                                             classes={{ root: classes.button }}
+                                            aria-label="increase-quantity-button"
                                         >
                                             +
                                         </Button>
                                     </ButtonGroup>
                                     <Stack direction="row" alignItems="center" spacing={1}>
-                                    <Typography variant="h6" className={classes.total}>&#36;{numbro(cartItem.total).format({ thousandSeparated: true, mantissa: 2 })}</Typography>
-                                    <IconButton 
-                                        color="error" 
-                                        onClick={() => handleRemoveCartItem(cartItem.id)}
-                                    >
-                                        <Tooltip title="Remove Item" arrow placement="bottom">
-                                            <Close className={classes.icon} />
-                                        </Tooltip>
-                                    </IconButton>
+                                        <Typography variant="h6" className={classes.total}>&#36;{numbro(cartItem.total).format({ thousandSeparated: true, mantissa: 2 })}</Typography>
+                                        <IconButton 
+                                            color="error" 
+                                            onClick={() => handleRemoveCartItem(cartItem.id)}
+                                            aria-label="close-button"
+                                        >
+                                            <Tooltip title="Remove Item" arrow placement="bottom">
+                                                <Close className={classes.icon} />
+                                            </Tooltip>
+                                        </IconButton>
                                     </Stack>
                                 </Box>
                             ))}

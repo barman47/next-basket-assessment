@@ -220,10 +220,10 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
                         priority
                         className={classes.thumbnail}
                     />
-                    <IconButton className={classes.leftButton} onClick={showPreviousImage}>
+                    <IconButton className={classes.leftButton} onClick={showPreviousImage} aria-label="previous-button">
                         <ChevronLeft className={classes.buttonIcon} />
                     </IconButton>
-                    <IconButton className={classes.rightButton} onClick={showNextImage}>
+                    <IconButton className={classes.rightButton} onClick={showNextImage} aria-label="next-button">
                         <ChevronRight className={classes.buttonIcon} />
                     </IconButton>
                     <Stack direction="row" spacing={2} mt={1}>
@@ -275,6 +275,7 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
                                 variant="contained"
                                 color="primary"
                                 size="medium"
+                                aria-label="options-button"
                             >
                                 Select Options
                             </Button>
@@ -286,6 +287,7 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
                                     title
                                 })}
                                 disabled={itemExistsInWishlist}
+                                aria-label="wishlist-button"
                             >
                                 <Tooltip title="Add to Wishlist" arrow placement="bottom">
                                     <HeartOutline className={cx(classes.icon, {[classes.disabledIcon]: itemExistsInWishlist})} />
@@ -304,12 +306,13 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
                                     });
                                 }}
                                 disabled={itemExistsInCart}
+                                aria-label="cart-button"
                             >
                                 <Tooltip title="Add to Cart" arrow placement="bottom">
                                     <CartOutline className={cx(classes.icon, {[classes.disabledIcon]: itemExistsInCart})} />
                                 </Tooltip>
                             </IconButton>
-                            <IconButton className={classes.iconButton}>
+                            <IconButton className={classes.iconButton} aria-label="view-button">
                                 <Eye className={classes.icon} />
                             </IconButton>
                         </Stack>

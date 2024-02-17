@@ -73,7 +73,7 @@ const MobileDrawer: React.FC<Props> = ({ open, toggleDrawer, openCartModal, open
         <Box component="nav" className={classes.root}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
                 <Link component={NextLink} href="/" underline="none" className={classes.link}>Bandage</Link>
-                <IconButton size="small" onClick={toggleDrawer}>
+                <IconButton size="small" onClick={toggleDrawer} aria-label="toggle-drawer-button">
                     <AlignHorizontalRight />
                 </IconButton>
             </Stack>
@@ -113,6 +113,7 @@ const MobileDrawer: React.FC<Props> = ({ open, toggleDrawer, openCartModal, open
                             color="primary"
                             size="small"
                             startIcon={<AccountOutline />}
+                            aria-label="login-button"
                         >
                             Login
                         </Button>
@@ -121,12 +122,13 @@ const MobileDrawer: React.FC<Props> = ({ open, toggleDrawer, openCartModal, open
                             variant="text"
                             color="primary"
                             size="small"
+                            aria-label="signup-button"
                         >
                             Register
                         </Button>
                     </Stack>
                     <Stack direction="column" justifyContent="center">
-                        <IconButton size="small" color="primary">
+                        <IconButton size="small" color="primary" aria-label="search-button">
                             <Magnify />
                         </IconButton>
                         <CustomizedBadge 

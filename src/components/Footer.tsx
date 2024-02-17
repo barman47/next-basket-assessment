@@ -88,13 +88,13 @@ const Footer: React.FC<{}> = () => {
                 <Stack direction={isMobile ? 'column' : 'row'} justifyContent="space-between">
                     <Link component={NextLink} href="/" underline="none" className={classes.link}>Bandage</Link>
                     <Stack direction="row" spacing={1}>
-                        <IconButton size="small" color="primary">
+                        <IconButton size="small" color="primary" aria-label="facebook-button">
                             <Facebook />
                         </IconButton>
-                        <IconButton size="small" color="primary">
+                        <IconButton size="small" color="primary" aria-label="instagram-button">
                             <Instagram />
                         </IconButton>
-                        <IconButton size="small" color="primary">
+                        <IconButton size="small" color="primary" aria-label="twitter-button">
                             <Twitter />
                         </IconButton>
                     </Stack>
@@ -150,6 +150,7 @@ const Footer: React.FC<{}> = () => {
                                 <Button
                                     variant="contained"
                                     color="primary"
+                                    aria-label="subscribe-button"
                                 >
                                     Subscribe
                                 </Button>

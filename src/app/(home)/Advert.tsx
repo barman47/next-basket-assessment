@@ -74,6 +74,7 @@ const Advert: React.FC<{}> = () => {
                 variant="contained"
                 color="primary"
                 size="large"
+                aria-label="signup-button"
             >
                 Sign Up Now
             </Button>

@@ -105,6 +105,7 @@ const Header: React.FC<{}> = () => {
                             LinkComponent="a"
                             href="tel:(225) 555-0118"
                             classes={{ root: classes.buttonLink }}
+                            aria-label="phone-number-button"
                         >
                             (225) 555-0118
                         </Button>
@@ -115,6 +116,7 @@ const Header: React.FC<{}> = () => {
                             LinkComponent="a"
                             href="mailto:michelle.rivera@example.com"
                             classes={{ root: classes.buttonLink }}
+                            aria-label="email-button"
                         >
                             michelle.rivera@example.com
                         </Button>
@@ -122,16 +124,16 @@ const Header: React.FC<{}> = () => {
                     <Typography variant="body2" component="p" className={classes.buttonLink}>Follow Us  and get a chance to win 80% off</Typography>
                     <Stack direction="row" alignItems="center" spacing={1}>
                         <Typography variant="body2" component="p" className={classes.buttonLink}>Follow Us : </Typography>
-                        <IconButton size="small" color="inherit">
+                        <IconButton size="small" color="inherit" aria-label="instagram-button">
                             <Instagram />
                         </IconButton>
-                        <IconButton size="small" color="inherit">
+                        <IconButton size="small" color="inherit" aria-label="youtube-button">
                             <Youtube />
                         </IconButton>
-                        <IconButton size="small" color="inherit">
+                        <IconButton size="small" color="inherit" aria-label="facebook-button">
                             <Facebook />
                         </IconButton>
-                        <IconButton size="small" color="inherit">
+                        <IconButton size="small" color="inherit" aria-label="twitter-button">
                             <Twitter />
                         </IconButton>
                     </Stack>
@@ -148,6 +150,7 @@ const Header: React.FC<{}> = () => {
                                     color="secondary"
                                     endIcon={<ChevronDown />}
                                     classes={{ root: classes.shopButton }}
+                                    aria-label="shop-button"
                                 >
                                     Shop
                                 </Button>
@@ -164,6 +167,7 @@ const Header: React.FC<{}> = () => {
                                     color="primary"
                                     size="small"
                                     startIcon={<AccountOutline />}
+                                    aria-label="login-button"
                                 >
                                     Login
                                 </Button>
@@ -172,6 +176,7 @@ const Header: React.FC<{}> = () => {
                                     variant="text"
                                     color="primary"
                                     size="small"
+                                    aria-label="signup-button"
                                 >
                                     Register
                                 </Button>

@@ -207,7 +207,7 @@ const WishlistModal: React.FC<Props> = React.forwardRef<ModalRef, Props>((_props
             disableEscapeKeyDown
         >
             <Box component="section" className={classes.root}>
-                <IconButton onClick={handleClose} sx={{ alignSelf: 'flex-end' }}>
+                <IconButton onClick={handleClose} sx={{ alignSelf: 'flex-end' }} aria-label="close-button">
                     <Close />
                 </IconButton>
                 {wishlistItems.length > 0 && <Typography variant="h5" className={classes.title}>Your Wishlist ({wishlistItems.length} {`Item${wishlistItems.length === 1 ? '' : 's'}`})</Typography>}
@@ -237,6 +237,7 @@ const WishlistModal: React.FC<Props> = React.forwardRef<ModalRef, Props>((_props
                                         color="error" 
                                         onClick={() => handleRemoveWishlistItem(wishlistItem.id)}
                                         sx={{ justifySelf: 'center' }}
+                                        aria-label="close-button"
                                     >
                                         <Tooltip title="Remove Item" arrow placement="bottom">
                                             <Close className={classes.icon} />

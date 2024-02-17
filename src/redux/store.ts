@@ -25,7 +25,13 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const storeConfig = {
     reducer: persistedReducer,
-    devTools: process.env.NODE_ENV !== 'production'
+    devTools: process.env.NODE_ENV !== 'production',
+    middleware: (getDefaultMiddleware: any) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST']
+      },
+    }),
 };
 
 const store = configureStore(storeConfig);

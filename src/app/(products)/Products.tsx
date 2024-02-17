@@ -145,6 +145,7 @@ const Products: React.FC<Props> = ({ paginate }) => {
                     onClick={getMoreProducts}
                     disabled={loading}
                     sx={{ display: products.length === pagination.total ? 'none' : 'initial' }}
+                    aria-label="load-more-button"
                 >
                     {loading ? 'LOADING PRODUCTS . . .' : 'LOAD MORE PRODUCTS'}
                 </Button>
