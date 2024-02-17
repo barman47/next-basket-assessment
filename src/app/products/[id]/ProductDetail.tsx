@@ -121,6 +121,10 @@ const useStyles = makeStyles()(theme => ({
 
     icon: {
         color: BLACK
+    },
+
+    disabledIcon: {
+        color: `${theme.palette.text.disabled} !important`
     }
 }));
 
@@ -284,7 +288,7 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
                                 disabled={itemExistsInWishlist}
                             >
                                 <Tooltip title="Add to Wishlist" arrow placement="bottom">
-                                    <HeartOutline className={classes.icon} />
+                                    <HeartOutline className={cx(classes.icon, {[classes.disabledIcon]: itemExistsInWishlist})} />
                                 </Tooltip>
                             </IconButton>
                             <IconButton 
@@ -302,7 +306,7 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
                                 disabled={itemExistsInCart}
                             >
                                 <Tooltip title="Add to Cart" arrow placement="bottom">
-                                    <CartOutline className={classes.icon} />
+                                    <CartOutline className={cx(classes.icon, {[classes.disabledIcon]: itemExistsInCart})} />
                                 </Tooltip>
                             </IconButton>
                             <IconButton className={classes.iconButton}>

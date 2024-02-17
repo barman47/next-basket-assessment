@@ -7,10 +7,6 @@ import ProductDetail from './ProductDetail';
 import { Product } from '@/interfaces';
 import { ApiResponse } from '@/utils/constants';
 
-// export const metadata: Metadata = {
-//     title: "Bandage"
-// };
-
 interface Props {
     params: {
         id: string;
