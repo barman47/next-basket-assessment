@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {
   	return (
 		<html lang="en">
+			<head>
+				<meta name="description" content="Ecommerce assessment for Next Basket" />
+			</head>
 			<body className={montserrat.className}>
 				<Providers>
 					<ThemeRegistry options={{ key: 'mui' }}>
