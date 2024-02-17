@@ -4,13 +4,9 @@ import Image from 'next/image';
 import {
     Avatar,
     Box,
-    ImageList,
-    ImageListItem,
     Rating,
     Stack,
-    Typography,
-    useMediaQuery,
-    useTheme
+    Typography
 } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 
@@ -54,12 +50,15 @@ const useStyles = makeStyles()(theme => ({
         lineHeight: theme.spacing(3)
     },
 
+    imageList: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)'
+    },
+
     image: {
         objectFit: 'cover',
         width: '142px',
         height: '142px',
-        minWidth: '100%',
-        minHeight: '100%',
 
         [theme.breakpoints.down('sm')]: {
             width: '100px',
@@ -70,8 +69,6 @@ const useStyles = makeStyles()(theme => ({
 
 const Review: React.FC<{}> = () => {
     const { classes } = useStyles();
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
         <Box component="section" className={classes.root}>
@@ -85,98 +82,86 @@ const Review: React.FC<{}> = () => {
                     <Typography variant="body2" className={classes.text}>Designer</Typography>
                 </Box>
             </Stack>
-            <ImageList cols={3} rowHeight={isMobile ? 100: 142} gap={17.85}>
-                <ImageListItem>
+            <Stack component="div" direction="column" spacing={1}>
+                <Stack direction="row" spacing={1}>
                     <Image 
                         src="/img/review1.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
                     <Image 
                         src="/img/review2.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
                     <Image 
                         src="/img/review3.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
+                </Stack>
+                <Stack direction="row" spacing={1}>
                     <Image 
                         src="/img/review4.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
                     <Image 
                         src="/img/review5.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
                     <Image 
                         src="/img/review6.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
+                </Stack>
+                <Stack direction="row" spacing={1}>
                     <Image 
                         src="/img/review7.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
                     <Image 
                         src="/img/review8.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-                <ImageListItem>
                     <Image 
                         src="/img/review9.png"
-                        width={isMobile ? 100 : 142}
-                        height={isMobile ? 100: 142}
+                        width={142}
+                        height={142}
                         alt="Review"
                         priority
                         className={classes.image}
                     />
-                </ImageListItem>
-            </ImageList>
+                </Stack>
+            </Stack>
         </Box>
     );
 };
